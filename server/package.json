@@ -4,7 +4,7 @@
   "description": "Backend server logic for election results viewer",
   "main": "server.js",
   "type": "module",
-  "repository":"matt-arofin/matthew arofin bincom assessment",
+  "repository": "matt-arofin/matthew arofin bincom assessment",
   "scripts": {
     "start": "node api/server.js",
     "dev": "nodemon api/server.js",
@@ -19,7 +19,8 @@
     "express": "^4.18.2",
     "helmet": "^7.0.0",
     "knex": "^2.5.1",
-    "pg": "^8.11.3"
+    "pg": "^8.11.3",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "eslint": "^8.49.0",
