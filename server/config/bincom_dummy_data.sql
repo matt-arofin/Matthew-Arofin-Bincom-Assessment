@@ -27,14 +27,14 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 DROP TABLE IF EXISTS `agentname`;
 CREATE TABLE IF NOT EXISTS `agentname` (
-  `name_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name_id` int(11) NOT NULL SERIAL,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `phone` char(13) NOT NULL,
   `pollingunit_uniqueid` int(11) NOT NULL,
   PRIMARY KEY (`name_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) WITH (OIDS=FALSE)  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `agentname`
@@ -54,7 +54,7 @@ INSERT INTO `agentname` (`name_id`, `firstname`, `lastname`, `email`, `phone`, `
 
 DROP TABLE IF EXISTS `announced_lga_results`;
 CREATE TABLE IF NOT EXISTS `announced_lga_results` (
-  `result_id` int(11) NOT NULL AUTO_INCREMENT,
+  `result_id` int(11) NOT NULL SERIAL,
   `lga_name` varchar(50) NOT NULL,
   `party_abbreviation` char(4) NOT NULL,
   `party_score` int(11) NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `announced_lga_results` (
   `date_entered` datetime NOT NULL,
   `user_ip_address` varchar(50) NOT NULL,
   PRIMARY KEY (`result_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=244 ;
+) WITH (OIDS=FALSE)  DEFAULT CHARSET=latin1 AUTO_INCREMENT=244 ;
 
 --
 -- Dumping data for table `announced_lga_results`
@@ -303,7 +303,7 @@ INSERT INTO `announced_lga_results` (`result_id`, `lga_name`, `party_abbreviatio
 
 DROP TABLE IF EXISTS `announced_pu_results`;
 CREATE TABLE IF NOT EXISTS `announced_pu_results` (
-  `result_id` int(11) NOT NULL AUTO_INCREMENT,
+  `result_id` int(11) NOT NULL SERIAL,
   `polling_unit_uniqueid` varchar(50) NOT NULL,
   `party_abbreviation` char(4) NOT NULL,
   `party_score` int(11) NOT NULL,
@@ -311,7 +311,7 @@ CREATE TABLE IF NOT EXISTS `announced_pu_results` (
   `date_entered` datetime NOT NULL,
   `user_ip_address` varchar(50) NOT NULL,
   PRIMARY KEY (`result_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=261 ;
+) WITH (OIDS=FALSE)  DEFAULT CHARSET=latin1 AUTO_INCREMENT=261 ;
 
 --
 -- Dumping data for table `announced_pu_results`
@@ -477,7 +477,7 @@ INSERT INTO `announced_pu_results` (`result_id`, `polling_unit_uniqueid`, `party
 
 DROP TABLE IF EXISTS `announced_state_results`;
 CREATE TABLE IF NOT EXISTS `announced_state_results` (
-  `result_id` int(11) NOT NULL AUTO_INCREMENT,
+  `result_id` int(11) NOT NULL SERIAL,
   `state_name` varchar(50) NOT NULL,
   `party_abbreviation` char(4) NOT NULL,
   `party_score` int(11) NOT NULL,
@@ -485,7 +485,7 @@ CREATE TABLE IF NOT EXISTS `announced_state_results` (
   `date_entered` datetime NOT NULL,
   `user_ip_address` varchar(50) NOT NULL,
   PRIMARY KEY (`result_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) WITH (OIDS=FALSE) DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `announced_state_results`
@@ -500,7 +500,7 @@ CREATE TABLE IF NOT EXISTS `announced_state_results` (
 
 DROP TABLE IF EXISTS `announced_ward_results`;
 CREATE TABLE IF NOT EXISTS `announced_ward_results` (
-  `result_id` int(11) NOT NULL AUTO_INCREMENT,
+  `result_id` int(11) NOT NULL SERIAL,
   `ward_name` varchar(50) NOT NULL,
   `party_abbreviation` char(4) NOT NULL,
   `party_score` int(11) NOT NULL,
@@ -508,7 +508,7 @@ CREATE TABLE IF NOT EXISTS `announced_ward_results` (
   `date_entered` datetime NOT NULL,
   `user_ip_address` varchar(50) NOT NULL,
   PRIMARY KEY (`result_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) WITH (OIDS=FALSE) DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `announced_ward_results`
@@ -523,7 +523,7 @@ CREATE TABLE IF NOT EXISTS `announced_ward_results` (
 
 DROP TABLE IF EXISTS `lga`;
 CREATE TABLE IF NOT EXISTS `lga` (
-  `uniqueid` int(11) NOT NULL AUTO_INCREMENT,
+  `uniqueid` int(11) NOT NULL SERIAL,
   `lga_id` int(11) NOT NULL,
   `lga_name` varchar(50) NOT NULL,
   `state_id` int(50) NOT NULL,
@@ -532,7 +532,7 @@ CREATE TABLE IF NOT EXISTS `lga` (
   `date_entered` datetime NOT NULL,
   `user_ip_address` varchar(50) NOT NULL,
   PRIMARY KEY (`uniqueid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+) WITH (OIDS=FALSE)  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `lga`
@@ -573,11 +573,11 @@ INSERT INTO `lga` (`uniqueid`, `lga_id`, `lga_name`, `state_id`, `lga_descriptio
 
 DROP TABLE IF EXISTS `party`;
 CREATE TABLE IF NOT EXISTS `party` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL SERIAL,
   `partyid` varchar(11) NOT NULL,
   `partyname` varchar(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) WITH (OIDS=FALSE)  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `party`
@@ -602,7 +602,7 @@ INSERT INTO `party` (`id`, `partyid`, `partyname`) VALUES
 
 DROP TABLE IF EXISTS `polling_unit`;
 CREATE TABLE IF NOT EXISTS `polling_unit` (
-  `uniqueid` int(11) NOT NULL AUTO_INCREMENT,
+  `uniqueid` int(11) NOT NULL SERIAL,
   `polling_unit_id` int(11) NOT NULL,
   `ward_id` int(11) NOT NULL,
   `lga_id` int(11) NOT NULL,
@@ -616,7 +616,7 @@ CREATE TABLE IF NOT EXISTS `polling_unit` (
   `date_entered` datetime DEFAULT NULL,
   `user_ip_address` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`uniqueid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=280 ;
+) WITH (OIDS=FALSE)  DEFAULT CHARSET=latin1 AUTO_INCREMENT=280 ;
 
 --
 -- Dumping data for table `polling_unit`
@@ -907,7 +907,7 @@ CREATE TABLE IF NOT EXISTS `states` (
   `state_id` int(11) NOT NULL,
   `state_name` varchar(50) NOT NULL,
   PRIMARY KEY (`state_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) WITH (OIDS=FALSE) DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `states`
@@ -960,7 +960,7 @@ INSERT INTO `states` (`state_id`, `state_name`) VALUES
 
 DROP TABLE IF EXISTS `ward`;
 CREATE TABLE IF NOT EXISTS `ward` (
-  `uniqueid` int(11) NOT NULL AUTO_INCREMENT,
+  `uniqueid` int(11) NOT NULL SERIAL,
   `ward_id` int(11) NOT NULL,
   `ward_name` varchar(50) NOT NULL,
   `lga_id` int(11) NOT NULL,
@@ -969,7 +969,7 @@ CREATE TABLE IF NOT EXISTS `ward` (
   `date_entered` datetime NOT NULL,
   `user_ip_address` varchar(50) NOT NULL,
   PRIMARY KEY (`uniqueid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=264 ;
+) WITH (OIDS=FALSE)  DEFAULT CHARSET=latin1 AUTO_INCREMENT=264 ;
 
 --
 -- Dumping data for table `ward`
