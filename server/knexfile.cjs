@@ -1,11 +1,14 @@
+require('dotenv').config();
+
 module.exports = {
   development: {
     client: 'pg',
     connection: {
-      host: 'localhost:5432',
+      host: 'localhost',
+      port: 5432,
       user: 'TestUser',
       password: 'Test123456',
-      database: 'Bincom_Assessment',
+      database: 'Bincom_Assesment',
     },
     migrations: {
       directory: './db/migrations',

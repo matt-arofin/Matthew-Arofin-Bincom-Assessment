@@ -22,4 +22,4 @@ router.post('/polling-unit/new', async (req, res) => {
   }
 });
 
-export default 
+export default router
