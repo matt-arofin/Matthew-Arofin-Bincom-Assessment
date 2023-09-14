@@ -1,5 +1,6 @@
 import express from 'express';
-import { getPollingUnitResult, getTotalResults } from '../controllers/resultsController'
+import { getPollingUnitResult, getTotalResults } from '../controllers/resultsController';
+import pollingUnitResultSchema from '../../db/schema/newPollingUnitSchema';
 
 const router = express.Router();
 
@@ -14,12 +15,12 @@ router.get('/lga/:lga', getTotalResults);
 // POST new polling unit results including votes for all parties
 router.post('/polling-unit/new', async (req, res) => {
   try {
-    const newPoll = await resultsModel.query().insert(req.body);
-    res.status(201).json(newPoll);
-  } catch(error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    const validatedData = await pollingUnitResultSchema.validate(req.body);
+    const createdEntry = await pollingUnitResultController.createEntry(validatedData);
+    res.status(201).json({ message: 'Entry created successfully', data: createdEntry });
+  } catch (validationError) {
+    res.status(400).json({ error: validationError.errors });
   }
 });
 
-export default router
+export default router;
