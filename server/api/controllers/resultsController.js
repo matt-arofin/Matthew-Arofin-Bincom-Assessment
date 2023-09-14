@@ -1,39 +1,28 @@
 import express from 'express';
-import resultsModel from '../models/resultsModels';
-
-
+import { getPollingUnitResultById, getTotalResultsByLGA } from '../models/resultsModels';
 
 const router = express.Router();
 
-// GET result for individual polling units (By PU Unique ID)
-// Should return the result of an individual polling unit
-router.get('/:id', async (req, res) => {
+// Controller function to get polling unit result by ID
+const getPollingUnitResult = async (req, res) => {
+  const { id } = req.params;
   try {
-    const results = await resultsModel.query();
-    res.status(200).json(results)
-  } catch(error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    const result = await getPollingUnitResultById(id);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
   }
-});
+};
 
-// GET aggregate results of polling units in LGAs (By LGA Unique ID)
-//
-router.get('/:id', async (req, res) => {
+// Controller function to get total results by LGA
+const getTotalResults = async (req, res) => {
+  const { lga } = req.params;
   try {
-
-  } catch(error) {
-    
+    const result = await getTotalResultsByLGA(lga);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
   }
-});
+};
 
-// POST new polling unit results including votes for all parties
-router.post('/', async (req, res) => {
-  try {
-    const newPoll = await resultsModel.query().insert(req.body);
-    res.status(201).json(newPoll);
-  } catch(error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
+export { getPollingUnitResult, getTotalResults };
